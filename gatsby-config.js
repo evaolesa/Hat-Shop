@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Hat Shop`,
@@ -13,6 +15,16 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        password: process.env.GATSBY_ACCESS_TOKEN,
+        storeUrl: process.env.GATSBY_MYSHOPIFY_URL,
+        shopifyConnections: ["collections"],
+      },
+    },
+    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
